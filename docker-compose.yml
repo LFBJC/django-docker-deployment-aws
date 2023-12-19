@@ -8,3 +8,19 @@ services:
       - 8000:8000  # map port 8000 in the container to port 8000 on the host
     volumes:
       - ./app:/app  # map the app directory on . to the /app directory on the docker container
+    environment:
+      - SECRET_KEY=devsecretkey
+      - DEBUG=1
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
+    depends_on:
+      - db  # db will start first and there will be a network connection between the services
+
+  db:
+     image: postgres:13-alpine
+     environment:
+       - POSTGRES_DB=devdb
+       - POSTGRES_USER=devuser
+       - POSTGRES_PASSWORD=changeme
