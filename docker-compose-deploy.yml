@@ -6,7 +6,7 @@ services:
       context: .  # build from current directory (use ./Dockerfile)
     restart: always
     volumes:
-      - static_data:/vol/web
+      - static-data:/vol/web
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - DB_HOST=${DB_HOST}
