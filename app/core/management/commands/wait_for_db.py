@@ -3,7 +3,7 @@ from psycopg2 import OperationalError as Psycopg2OpError
 from django.db.utils import OperationalError
 from django.core.management.base import BaseCommand
 
-class WaitForDBCommand(BaseCommand):
+class Command(BaseCommand):
     """Django command to wait for the database"""
 
     def handle(self, *args, **options):
@@ -12,7 +12,7 @@ class WaitForDBCommand(BaseCommand):
         db_up = False
         while not db_up:
             try:
-                self.check(database=['default'])
+                self.check(databases=['default'])
                 db_up = True
             # If the database is not ready the function check will throw different errors depending on the stage in
             # which the database is starting up, so the except block needs to catch these two errors
