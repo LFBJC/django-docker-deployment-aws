@@ -18,10 +18,9 @@ EXPOSE 8000
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     apk add --update --no-cache postgresql-client && \
-    apk add --update --no-cache --virtual .tmp-deps \
-          build-base postgresql-dev musl-dev && \
-    apk del .tmp-deps && \
+    apk add --update --no-cache --virtual .tmp-deps build-base postgresql-dev musl-dev && \
     /py/bin/pip install -r /requirements.txt && \
+    apk del .tmp-deps && \
     adduser -D -H app
 
 ENV PATH="/py/bin:$PATH"
