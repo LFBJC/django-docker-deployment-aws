@@ -21,7 +21,11 @@ RUN python -m venv /py && \
     apk add --update --no-cache --virtual .tmp-deps build-base postgresql-dev musl-dev && \
     /py/bin/pip install -r /requirements.txt && \
     apk del .tmp-deps && \
-    adduser -D -H app
+    adduser -D -H app && \
+    mkdir -p /vol/web/static && \
+    mkdir -p /vol/web/media && \
+    chown -R app:app /vol && \
+    chmod -R 755 /vol
 
 ENV PATH="/py/bin:$PATH"
 

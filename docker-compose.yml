@@ -12,6 +12,7 @@ services:
       - 8000:8000  # map port 8000 in the container to port 8000 on the host
     volumes:
       - ./app:/app  # map the app directory on . to the /app directory on the docker container
+      - ./data/web:/vol/web
     environment:
       - SECRET_KEY=devsecretkey
       - DEBUG=1
